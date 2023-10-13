@@ -4,8 +4,8 @@ import Link from 'next/link'
 const NavBar = () => {
   return (
     <div className="flex flex-wrap">
-      <section className="relative mx-auto">
-        <nav className="flex justify-between bg-gray-900 text-white w-screen">
+      <section className="w-full">
+        <nav className="flex justify-between bg-gray-900 text-white">
           <div className="px-5 xl:px-12 py-6 flex w-full items-center">
             <a className="text-3xl font-bold font-heading" href="#">
               CM

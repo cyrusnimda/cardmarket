@@ -11,34 +11,31 @@ export async function POST(request: NextRequest) {
         const hash = loginRequest.password;
         const user = await prisma.user.findUnique({
             where: {
-              username: loginRequest.email,
+                username: loginRequest.email,
             },
         })
 
-        if(!user){
+        if (!user) {
             return NextResponse.json(
-                {message: "Unauthorized"},
-                {status: 401}
+                { message: "Unauthorized" }, { status: 401 }
             )
         }
 
         const match = await bcrypt.compare(loginRequest.password, user.password);
 
-        if(!match) {
+        if (!match) {
             return NextResponse.json(
-                {message: "Unauthorized"},
-                {status: 401}
+                { message: "Unauthorized" }, { status: 401 }
             )
-        } 
+        }
 
         return NextResponse.json(
-            {message: "This works"}
+            { message: "This works" }
         )
-        
+
     } catch (error: any) {
         return NextResponse.json(
-            {error: error.message},
-            {status: 500}
+            { error: error.message }, { status: 500 }
         )
     }
 }

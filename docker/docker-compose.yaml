@@ -12,3 +12,4 @@ services:
       - MYSQL_PASSWORD=admin
       - MYSQL_USER=admin
       - MYSQL_DATABASE=cardmarket
+    restart: always
