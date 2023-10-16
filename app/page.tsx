@@ -1,12 +1,20 @@
 import RandomCardsWidget from './components/cards/RandomCardsWidget';
+import config from './config'
+import Sidebar from '@/app/components/Sidebar';
 
-export default function Home() {
-  const [isOpen, setIsOpen] = [false, false];
+const { hasSidebar } = config;
 
-  return (
-    <main>
-      <div>hello world 2</div>
-      <RandomCardsWidget />
-    </main>
-  )
+const Home = () => {
+    return (
+        <section className='flex' >
+            <div id="content" className={(hasSidebar ? 'w-4/5' : 'w-full')}>
+                <RandomCardsWidget />
+
+            </div >
+
+            {hasSidebar ? <Sidebar /> : null}
+        </section >
+    )
 }
+
+export default Home
