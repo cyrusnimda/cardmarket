@@ -12,3 +12,5 @@ export type CardProduct = {
     card: Card,
     amount: number
 }
+
+export type Cart = CardProduct[]

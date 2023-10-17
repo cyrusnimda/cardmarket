@@ -20,7 +20,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className} >
-                <div className='container bg-teal-100 md:mx-auto'>
+                <div className='container bg-quinary md:mx-auto'>
                     <div><Toaster /></div>
                     <NavBar />
                     <div id="main" className='min-h-fit px-10 py-5'>

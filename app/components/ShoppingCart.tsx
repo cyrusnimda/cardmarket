@@ -1,17 +1,22 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
-import type { CardProduct, Card } from '@/app/types'
+import type { CardProduct, Cart } from '@/app/types'
 
-const ShoppingCart = () => {
-    const card: Card = { id: 1, name: 'card 1', edition: 'edition 1', image: 'image 1', stock: 1, price: 1 }
-    const product: CardProduct = { card: card, amount: 1 }
+const totalCardPrice = (cart: Cart) => {
+    let total = 0;
+    cart.forEach((product: CardProduct) => {
+        total += (product.card.price * product.amount)
+    })
+    return total.toFixed(2);
+}
 
-    const [cart, setCart] = useState<CardProduct[]>([])
+const ShoppingCart = ({ cart }: { cart: Cart }) => {
+    const [visible, setVisible] = useState(false);
 
     return (
-        <div >
-            <a className="flex items-center hover:text-gray-200" href="#">
+        <div>
+            <a onClick={() => setVisible(true)} className="flex items-center hover:text-gray-200" href="#">
 
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round"
@@ -24,28 +29,32 @@ const ShoppingCart = () => {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
                 </span>
 
-                <div className='absolute'>
-                    <div id="cart" className="z-10 relative top-28 right-24 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
-                            {cart.map((product: CardProduct) => (
-                                <li key={product.card.id}>
-                                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        {product.card.name}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
+            </a>
+            <div className='absolute '>
+                <div id="cart" className={(visible ? "show" : "hidden") + " flex  flex-col z-10 relative top-12 right-48 bg-quinary divide-y divide-gray-100 border-gray-600 border-2 rounded-lg shadow w-72 h-48 dark:bg-gray-700"}>
+                    <div className='rounded-t flex justify-between items-center px-2 bg-primary  text-white  text-xl border-b-2 border-black'>
+                        <span>Cart</span>
+                        <a className='hover:cursor-pointer' onClick={() => setVisible(false)}>
+                            <svg className=" w-4 h-4 text-white-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
+                            </svg>
+                        </a>
+
+                    </div>
+                    <ul className="rounded flex-1 py-0 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
+                        {cart.map((product: CardProduct) => (
+                            <li key={product.card.id} className='flex justify-between px-2 py-1 bg-quinary hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
+                                <span>{product.amount}x {product.card.name}</span>
+                                <span>£{(product.card.price * product.amount).toFixed(2)}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className='rounded-b text-center font-bold flex items-end justify-between px-2 py-1 bg-primary text-white'>
+                        <span>Total: </span>
+                        <span>£{totalCardPrice(cart)}</span>
                     </div>
                 </div>
-            </a>
-            <button onClick={() => {
-                setCart([
-                    ...cart,
-                    product
-                ])
-            }}>
-                add
-            </button>
+            </div>
         </div>
     )
 }

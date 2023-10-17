@@ -1,5 +1,5 @@
 const config = {
-    "hasSidebar": true,
+    "hasSidebar": false,
 }
 
 export default config;
