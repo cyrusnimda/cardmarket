@@ -11,8 +11,19 @@ const totalCardPrice = (cart: Cart) => {
     return total.toFixed(2);
 }
 
-const ShoppingCart = ({ cart }: { cart: Cart }) => {
+const ShoppingCart = ({ cartInitial }: { cartInitial: Cart }) => {
     const [visible, setVisible] = useState(false);
+    const [cart, setCart] = useState(cartInitial);
+
+    const deleteProduct = (product: CardProduct) => {
+        const cartWithoutProduct: Cart = cart.filter((item) => item !== product);
+        setCart(cartWithoutProduct);
+    }
+
+    const addProduct = (product: CardProduct) => {
+        const cartWithProduct: Cart = [...cart, product]
+        setCart(cartWithProduct);
+    }
 
     return (
         <div>
@@ -46,6 +57,7 @@ const ShoppingCart = ({ cart }: { cart: Cart }) => {
                             <li key={product.card.id} className='flex justify-between px-2 py-1 bg-quinary hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                                 <span>{product.amount}x {product.card.name}</span>
                                 <span>£{(product.card.price * product.amount).toFixed(2)}</span>
+                                <button onClick={() => deleteProduct(product)}>Delete</button>
                             </li>
                         ))}
                     </ul>
