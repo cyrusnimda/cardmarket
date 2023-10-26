@@ -21,3 +21,8 @@
 body {
   color: rgb(var(--primary-color));
 }
+
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}

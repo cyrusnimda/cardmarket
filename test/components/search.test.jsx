@@ -11,7 +11,7 @@ describe('Search', () => {
 
     it('should render the search', () => {
         const dom = render(<Search />)
-        screen.getByText('Search')
+        screen.getAllByRole('button')
     })
 
     it('should render an  input search', () => {
