@@ -26,7 +26,9 @@ const CardPage = async ({ params }: { params: CardPageParams }) => {
         <>
             <section className='flex'>
                 <div className='w-1/3 flex justify-center'>
-                    <CardComponent card={card} />
+                    <div className=' w-72'>
+                        <CardComponent card={card} />
+                    </div>
                 </div>
                 <div className='w-2/3'>
                     <h1>Price history</h1>
@@ -41,15 +43,15 @@ const CardPage = async ({ params }: { params: CardPageParams }) => {
 
             <section>
                 <div className='flex justify-center gap-8 mt-8'>
-                    <div className='w-64 h-28 bg-cuaternary border border-black rounded-xl flex flex-col justify-center items-center'>
+                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
                         <span className='text-3xl font-bold'>1234</span>
                         <span className='text-sm'>Visits today</span>
                     </div>
-                    <div className='w-64 h-28 bg-cuaternary border border-black rounded-xl flex flex-col justify-center items-center'>
+                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
                         <span className='text-3xl font-bold'>29</span>
                         <span className='text-sm'>People favourite</span>
                     </div>
-                    <div className='w-64 h-28 bg-cuaternary border border-black rounded-xl flex flex-col justify-center items-center'>
+                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
                         <span className='text-3xl font-bold'>5</span>
                         <span className='text-sm'>Sold this month</span>
                     </div>

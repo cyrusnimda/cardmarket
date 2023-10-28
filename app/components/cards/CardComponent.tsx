@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 const CardComponent = ({ card }: { card: Card }) => {
     return (
-        <div className='w-72 text-xs '>
-            <div className='flex gap-2 py-1'>
+        <div className='w-full text-xs '>
+            <div className='flex gap-2 py-1 justify-center'>
                 <span title={card.stock > 0 ? 'In stock' : 'Out of stock'} className=''>{card.stock > 0 ? <svg className="w-4 h-4 text-green-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                 </svg> : <svg className="w-4 h-4 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -14,7 +14,7 @@ const CardComponent = ({ card }: { card: Card }) => {
                 <span><strong>{card.name}:</strong> £{card.price}</span>
             </div>
             <Link href={'/cards/' + card.id}>
-                <img src={card.image} className='w-full rounded-3xl rou border-black border' />
+                <img src={card.image} className='w-full rounded-2xl rou border-black border' />
             </Link>
             <div className={'flex justify-around  items-center py-1 ' + (card.stock == 0 ? 'hidden' : 'show')}>
                 <span>

@@ -14,7 +14,7 @@ const RandomCardsWidget = async () => {
     return (
         <div id='random-cards' className=''>
             <h2 className='text-2xl'>Random cards</h2>
-            <div className='flex justify-around px-28 py-5'>
+            <div className='flex justify-around px-28 py-5 gap-10'>
                 {randomCards.map((card: Card) => (
                     <div key={card.id}>
                         <CardComponent card={card} />

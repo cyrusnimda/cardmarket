@@ -22,7 +22,7 @@ const ContactPage = () => {
                             <textarea className='rounded-lg border border-black w-96' name="" id="message" cols="30" rows="10"></textarea>
                         </div>
                         <div>
-                            <button className='my-2 border border-black rounded-lg bg-cuaternary text-black px-4 py-1 font-bold'>Send</button>
+                            <button className='my-2 border border-black rounded-lg bg-cuaternary text-black px-4 py-1 font-medium'>Send</button>
                         </div>
                     </form>
                 </div>

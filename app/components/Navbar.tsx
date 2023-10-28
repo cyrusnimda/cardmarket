@@ -17,7 +17,7 @@ const NavBar = () => {
             <section className="w-full">
                 <nav className="flex justify-between bg-primary text-white">
                     <div className="px-5 xl:px-12 py-2 flex w-full items-center">
-                        <a className="text-3xl font-bold font-heading text-center flex gap-2 items-center" href="#">
+                        <Link className="text-3xl font-bold font-heading text-center flex gap-2 items-center" href="/">
                             <svg fill="#fff" height="60px" width="60px" version="1.1" id="Capa_1"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 463.644 463.644">
@@ -50,7 +50,7 @@ const NavBar = () => {
 	v-8.565C306.52,285.352,302.491,281.322,297.52,281.322z"/>
                             </svg>
                             CM
-                        </a>
+                        </Link>
 
                         <ul className="hidden md:flex px-4 ml-8 mr-auto font-semibold font-heading space-x-12">
                             <li><Link className="hover:text-cuaternary" href="/">Home</Link></li>
