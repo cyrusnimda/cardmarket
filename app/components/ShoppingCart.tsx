@@ -2,6 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 import type { CardProduct, Cart } from '@/app/types'
+import { useCart } from '@/app/hooks/useCart'
 
 const totalCardPrice = (cart: Cart) => {
     let total = 0;
@@ -11,19 +12,11 @@ const totalCardPrice = (cart: Cart) => {
     return total.toFixed(2);
 }
 
-const ShoppingCart = ({ cartInitial }: { cartInitial: Cart }) => {
+const ShoppingCart = () => {
+    const { cart, removeFromCart } = useCart()
     const [visible, setVisible] = useState(false);
-    const [cart, setCart] = useState(cartInitial);
 
-    const deleteProduct = (product: CardProduct) => {
-        const cartWithoutProduct: Cart = cart.filter((item) => item !== product);
-        setCart(cartWithoutProduct);
-    }
 
-    const addProduct = (product: CardProduct) => {
-        const cartWithProduct: Cart = [...cart, product]
-        setCart(cartWithProduct);
-    }
 
     return (
         <div>
@@ -35,10 +28,13 @@ const ShoppingCart = ({ cartInitial }: { cartInitial: Cart }) => {
                         strokeWidth="2"
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <span className="flex absolute -mt-5 ml-4">
-                    <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
-                </span>
+                {
+                    cart.length > 0 &&
+                    <span className="flex absolute -mt-5 ml-4">
+                        <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                    </span>
+                }
 
             </a>
             <div className='absolute '>
@@ -57,7 +53,7 @@ const ShoppingCart = ({ cartInitial }: { cartInitial: Cart }) => {
                             <li key={product.card.id} className='flex justify-between px-2 py-1 bg-quinary hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                                 <span>{product.amount}x {product.card.name}</span>
                                 <span>£{(product.card.price * product.amount).toFixed(2)}</span>
-                                <button onClick={() => deleteProduct(product)}>Delete</button>
+                                <button onClick={() => removeFromCart(product)}>Delete</button>
                             </li>
                         ))}
                     </ul>

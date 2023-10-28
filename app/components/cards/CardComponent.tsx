@@ -1,8 +1,16 @@
+'use client'
 import React from 'react'
-import type { Card } from '@/app/types'
+import type { Card, CardProduct } from '@/app/types'
 import Link from 'next/link'
+import { useCart } from '@/app/hooks/useCart'
 
 const CardComponent = ({ card }: { card: Card }) => {
+    const { addToCart } = useCart()
+    const handleClick = () => {
+        const product: CardProduct = { card, amount: 1 }
+        addToCart(product)
+    }
+
     return (
         <div className='w-full text-xs '>
             <div className='flex gap-2 py-1 justify-center'>
@@ -20,7 +28,7 @@ const CardComponent = ({ card }: { card: Card }) => {
                 <span>
                     Amount: <input type="number" className='w-8 p-0 h-5 text-xs text-center rounded' defaultValue="1" min="0" />
                 </span>
-                <button className='bg-primary text-white hover:bg-gray-500  font-bold py-1 px-2 rounded'>
+                <button onClick={handleClick} className='bg-primary text-white hover:bg-gray-500  font-bold py-1 px-2 rounded'>
                     Add
                 </button>
             </div>

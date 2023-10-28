@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import NavBar from './components/Navbar'
 import { Toaster } from 'react-hot-toast'
 import Footer from './components/Footer'
+import { CartProvider } from './context/cart'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,17 +19,19 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-            <body className={inter.className} >
-                <div className='container md:mx-auto px-40'>
-                    <div><Toaster /></div>
-                    <NavBar />
-                    <div id="main" className='min-h-fit px-10 py-5 bg-quinary'>
-                        {children}
+        <CartProvider>
+            <html lang="en">
+                <body className={inter.className} >
+                    <div className='container md:mx-auto px-40'>
+                        <div><Toaster /></div>
+                        <NavBar />
+                        <div id="main" className='min-h-fit px-10 py-5 bg-quinary'>
+                            {children}
+                        </div>
+                        <Footer />
                     </div>
-                    <Footer />
-                </div>
-            </body>
-        </html>
+                </body>
+            </html>
+        </CartProvider>
     )
 }
