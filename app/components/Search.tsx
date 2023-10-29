@@ -5,36 +5,61 @@ import type { Card } from '@/app/types'
 import axios from 'axios';
 import config from '../config';
 import Link from 'next/link'
+import Image from 'next/image';
 
 const { api_url } = config;
 
 const Search = () => {
     const [criteria, setCriteria] = useState('');
+    const [showSearchResults, setShowSearchResults] = useState(false);
     const [searchResult, setSearchResult] = useState<Card[]>([]);
+
+    const searchInput = document.getElementById('searchInput');
 
     const search = () => {
         if (!criteria) return
 
         const search_url = api_url + '/cards/search/' + criteria;
-        console.log(criteria)
-        // const res = await axios.get(api_url + '/cards/search/' + criteria)
-        // const cards: Card[] = await JSON.parse(res.data.cards);
 
         axios.get(search_url)
             .then((response) => {
-                console.log(response)
                 return JSON.parse(response.data.cards)
             })
             .then((cards) => {
-                console.log(cards)
                 setSearchResult(cards)
+                setShowSearchResults(true)
+                if(searchInput){
+                    searchInput.focus();
+                }
             });
+    }
+
+    const onSearchBlur = () => {
+        if(!showSearchResults) return
+
+        setTimeout(() => {
+            setCriteria('')
+            setShowSearchResults(false)
+        }, 200)
+    }
+
+    const onSeatchCange = (e) => {
+        setCriteria(e.target.value)
+        setShowSearchResults(false)
     }
 
     return (
         <div id="search" className='flex'>
-            <input className='w-64 rounded-lg text-black' type="text" value={criteria} onChange={(e) => setCriteria(e.target.value)} />
-            <button onClick={(e) => search()} className='rounded-lg bg-cuaternary text-black px-2 ml-1 mr-4 flex items-center'>
+            <input 
+                id="searchInput"
+                className='w-64 h-10 border-0 pl-5 rounded-l-full text-black' 
+                type="text" 
+                value={criteria} 
+                onChange={onSeatchCange} 
+                onBlur={onSearchBlur}
+            />
+            
+            <button onClick={(e) => search()} className='rounded-r-full border-l-[1px] border-black  bg-cuaternary text-black px-2 h-10 mr-4 flex items-center'>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5} stroke="currentColor"
@@ -43,11 +68,12 @@ const Search = () => {
                 </svg>
             </button>
 
-            <div className='absolute p-0 m-0 h-0'>
-                <ul className='relative bg-white text-black w-64 top-12 rounded-lg px-2'>
+            <div className={(showSearchResults ? 'show' : 'hidden') + ' absolute p-0 m-0 h-0'} >
+                <ul className='relative bg-white text-black w-96 top-12 rounded-lg p-2 z-10'>
                     {searchResult.map((card: Card) => (
-                        <li key={card.id}>
-                            <Link href={'/cards/' + card.id}>
+                        <li key={card.id} >
+                            <Link className='flex items-center my-3 mx-2 gap-3  hover:bg-gray-100 hover:font-bold' href={'/cards/' + card.id}>
+                                <img className='w-14 h-[78px]' src={card.image} alt={card.name} />
                                 <span>{card.name}</span>
                             </Link>
                         </li>
