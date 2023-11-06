@@ -7,7 +7,7 @@ const RandomCardsWidget = async () => {
     let randomCards: Card[] = []
     try {
         const res = await axios.get(process.env.API_URL + '/cards/random')
-        randomCards = await JSON.parse(res.data.cards);
+        randomCards = await res.data.cards;
     } catch (error) { }
 
     //console.log(randomCards)

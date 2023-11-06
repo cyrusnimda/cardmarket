@@ -16,7 +16,7 @@ interface CardPageParams {
 
 const getCard = (id: number) => {
     return axios.get<CardResponse>(process.env.API_URL + '/cards/' + id,)
-        .then((response) => JSON.parse(response.data.card.toString()))
+        .then((response) => response.data.card)
 }
 
 const CardPage = async ({ params }: { params: CardPageParams }) => {
