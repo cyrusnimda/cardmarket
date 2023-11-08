@@ -9,7 +9,6 @@ const Home = () => {
         <section className='flex' >
             <div id="content" className={(hasSidebar ? 'w-4/5' : 'w-full')}>
                 <RandomCardsWidget />
-
             </div >
 
             {hasSidebar ? <Sidebar /> : null}

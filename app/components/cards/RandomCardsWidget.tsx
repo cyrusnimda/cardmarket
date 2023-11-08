@@ -5,6 +5,7 @@ import CardComponent from './CardComponent'
 
 const RandomCardsWidget = async () => {
     let randomCards: Card[] = []
+
     try {
         const res = await axios.get(process.env.API_URL + '/cards/random')
         randomCards = await res.data.cards;

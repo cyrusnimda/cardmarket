@@ -14,9 +14,9 @@ const Search = () => {
     const [showSearchResults, setShowSearchResults] = useState(false);
     const [searchResult, setSearchResult] = useState<Card[]>([]);
 
-    const searchInput = document.getElementById('searchInput');
-
+    
     const search = () => {
+        const searchInput = document.getElementById('searchInput');
         if (!criteria) return
 
         const search_url = api_url + '/cards/search/' + criteria;

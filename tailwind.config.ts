@@ -20,12 +20,15 @@ const config: Config = {
         'ternary': '#7EBDC2',
         'cuaternary': '#F3DFA2',
         'quinary': '#EFE6DD',
+        'light': '#EFE6DD',
+        'skeleton': '#ccc',
       },
     },
   },
   plugins: [
-    require('flowbite/plugin')
+
   ],
 }
 
 export default config
+
