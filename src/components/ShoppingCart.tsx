@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 import type { CardProduct, Cart } from '@/app/types'
-import { useCart } from '@/app/hooks/useCart'
+import { useCart } from '@/hooks/useCart'
 
 const totalCardPrice = (cart: Cart) => {
     let total = 0;

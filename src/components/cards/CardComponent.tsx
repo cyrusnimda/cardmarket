@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Card, CardProduct } from '@/app/types'
 import Link from 'next/link'
-import { useCart } from '@/app/hooks/useCart'
+import { useCart } from '@/hooks/useCart'
 
 const CardComponent = ({ card }: { card: Card }) => {
     const { addToCart } = useCart()

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import type { Card } from '@/app/types'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import CardComponent from '@/app/components/cards/CardComponent'
-import PriceHistory from '@/app/components/plots/PriceHistory'
+import CardComponent from '@/components/cards/CardComponent'
+import PriceHistory from '@/components/plots/PriceHistory'
+import Stats from '@/components/Stats'
+import StatsSkeleton from './StatsSkeleton'
+import PriceHistorySkeleton from '@/components/plots/PriceHistorySkeleton'
 
 interface CardResponse {
     status: string;
@@ -22,6 +25,7 @@ const getCard = (id: number) => {
 const CardPage = async ({ params }: { params: CardPageParams }) => {
     const id = Number(params.id)
     const card = await getCard(id);
+
     return (
         <>
             <section className='flex'>
@@ -36,25 +40,26 @@ const CardPage = async ({ params }: { params: CardPageParams }) => {
                         <em>Card's price are updated every month, depending of the format that card is being played, it will fluctuate more or less. </em>
                     </div>
                     <section className='border border-black'>
-                        <PriceHistory />
+                        <Suspense fallback={<PriceHistorySkeleton />}>
+                            <PriceHistory />
+                        </Suspense>
                     </section>
                 </div>
             </section>
 
             <section>
                 <div className='flex justify-center gap-8 mt-8'>
-                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
-                        <span className='text-3xl font-bold'>1234</span>
-                        <span className='text-sm'>Visits today</span>
-                    </div>
-                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
-                        <span className='text-3xl font-bold'>29</span>
-                        <span className='text-sm'>People favourite</span>
-                    </div>
-                    <div className='w-64 h-28 bg-[#f2f0ee] border border-black rounded-xl flex flex-col justify-center items-center'>
-                        <span className='text-3xl font-bold'>5</span>
-                        <span className='text-sm'>Sold this month</span>
-                    </div>
+                    <Suspense fallback={<StatsSkeleton />}>
+                        <Stats title="Total visits" total="1.560" />
+                    </Suspense>
+
+                    <Suspense fallback={<StatsSkeleton />}>
+                        <Stats title="People favourite" total="29" />
+                    </Suspense>
+
+                    <Suspense fallback={<StatsSkeleton />}>
+                        <Stats title="Sold this month" total="5" />
+                    </Suspense>
                 </div>
             </section>
         </>

@@ -1,10 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import NavBar from './components/Navbar'
+import NavBar from '@/components/Navbar'
 import { Toaster } from 'react-hot-toast'
-import Footer from './components/Footer'
-import { CartProvider } from './context/cart'
+import Footer from '@/components/Footer'
+import { CartProvider } from '../context/cart'
 
 const inter = Inter({ subsets: ['latin'] })
 

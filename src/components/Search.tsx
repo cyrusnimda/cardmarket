@@ -3,7 +3,7 @@ import React, { use } from 'react'
 import { useState } from "react"
 import type { Card } from '@/app/types'
 import axios from 'axios';
-import config from '../config';
+import config from '@/app/config';
 import Link from 'next/link'
 import Image from 'next/image';
 
@@ -14,7 +14,7 @@ const Search = () => {
     const [showSearchResults, setShowSearchResults] = useState(false);
     const [searchResult, setSearchResult] = useState<Card[]>([]);
 
-    
+
     const search = () => {
         const searchInput = document.getElementById('searchInput');
         if (!criteria) return
@@ -28,14 +28,14 @@ const Search = () => {
             .then((cards) => {
                 setSearchResult(cards)
                 setShowSearchResults(true)
-                if(searchInput){
+                if (searchInput) {
                     searchInput.focus();
                 }
             });
     }
 
     const onSearchBlur = () => {
-        if(!showSearchResults) return
+        if (!showSearchResults) return
 
         setTimeout(() => {
             setCriteria('')
@@ -50,15 +50,15 @@ const Search = () => {
 
     return (
         <div id="search" className='flex'>
-            <input 
+            <input
                 id="searchInput"
-                className='w-64 h-10 border-0 pl-5 rounded-l-full text-black' 
-                type="text" 
-                value={criteria} 
-                onChange={onSeatchCange} 
+                className='w-64 h-10 border-0 pl-5 rounded-l-full text-black'
+                type="text"
+                value={criteria}
+                onChange={onSeatchCange}
                 onBlur={onSearchBlur}
             />
-            
+
             <button onClick={(e) => search()} className='rounded-r-full border-l-[1px] border-black  bg-cuaternary text-black px-2 h-10 mr-4 flex items-center'>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24"

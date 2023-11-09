@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import StatsSkeleton from './StatsSkeleton'
 import CardComponentSkeleton from '@/app/components/cards/CardComponentSkeleton'
 import PriceHistorySkeleton from '@/app/components/plots/PriceHistorySkeleton'

@@ -1,6 +1,6 @@
-import RandomCardsWidget from './components/cards/RandomCardsWidget';
+import RandomCardsWidget from '@/components/cards/RandomCardsWidget';
 import config from './config'
-import Sidebar from '@/app/components/Sidebar';
+import Sidebar from '@/components/Sidebar';
 
 const { hasSidebar } = config;
 
