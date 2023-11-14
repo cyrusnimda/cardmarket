@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { describe, it, afterEach } from 'vitest'
-import Search from '../../../app/components/Search'
+import Search from '@/components/Search'
 
 describe('Search', () => {
     afterEach(cleanup)
