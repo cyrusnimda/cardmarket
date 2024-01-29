@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import StatsSkeleton from './StatsSkeleton'
-import CardComponentSkeleton from '@/app/components/cards/CardComponentSkeleton'
-import PriceHistorySkeleton from '@/app/components/plots/PriceHistorySkeleton'
+import CardComponentSkeleton from '@/components/cards/CardComponentSkeleton'
+import PriceHistorySkeleton from '@/components/plots/PriceHistorySkeleton'
 
 const CardPageSkeleton = () => {
     return (
@@ -15,7 +15,7 @@ const CardPageSkeleton = () => {
                 <div className='w-2/3'>
                     <h1>Price history</h1>
                     <div>
-                        <em>Card's price are updated every month, depending of the format that card is being played, it will fluctuate more or less. </em>
+                        <em>Card&apos;s price are updated every month, depending of the format that card is being played, it will fluctuate more or less. </em>
                     </div>
                     <section className='border border-black'>
                         <PriceHistorySkeleton />

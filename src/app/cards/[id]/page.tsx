@@ -37,7 +37,7 @@ const CardPage = async ({ params }: { params: CardPageParams }) => {
                 <div className='w-2/3'>
                     <h1>Price history</h1>
                     <div>
-                        <em>Card's price are updated every month, depending of the format that card is being played, it will fluctuate more or less. </em>
+                        <em>Card&apos;s price are updated every month, depending of the format that card is being played, it will fluctuate more or less. </em>
                     </div>
                     <section className='border border-black'>
                         <Suspense fallback={<PriceHistorySkeleton />}>

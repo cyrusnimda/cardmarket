@@ -19,10 +19,10 @@ const ContactPage = () => {
                         </div>
                         <div className='flex flex-col my-2'>
                             <label htmlFor="message">Message</label>
-                            <textarea className='rounded-lg border border-black w-96' name="" id="message" cols="30" rows="10"></textarea>
+                            <textarea className='rounded-lg border border-black w-96' name="" id="message" cols={30} rows={10}></textarea>
                         </div>
                         <div>
-                            <button className='my-2 border border-black rounded-lg bg-cuaternary text-black px-4 py-1 font-medium'>Send</button>
+                            <button className='my-2 border border-black rounded-lg bg-golden text-black px-4 py-1 font-medium'>Send</button>
                         </div>
                     </form>
                 </div>
@@ -31,13 +31,13 @@ const ContactPage = () => {
                         width="600"
                         height="450"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.618453906069!2d-0.1272802158499121!3d51.52021556636067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b323093d307%3A0x2fb199016d5642a7!2sThe%20British%20Museum!5e0!3m2!1sen!2suk!4v1698348693390!5m2!1sen!2suk"
-                        allowfullscreen=""
+                        allowFullScreen={false}
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerPolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

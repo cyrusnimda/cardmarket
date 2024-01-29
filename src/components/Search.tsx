@@ -23,7 +23,7 @@ const Search = () => {
 
         axios.get(search_url)
             .then((response) => {
-                return JSON.parse(response.data.cards)
+                return response.data.cards
             })
             .then((cards) => {
                 setSearchResult(cards)
@@ -43,8 +43,9 @@ const Search = () => {
         }, 200)
     }
 
-    const onSeatchCange = (e) => {
-        setCriteria(e.target.value)
+    const onSeatchCange = (e: React.FormEvent<HTMLInputElement>) => {
+        const target = e.target as HTMLInputElement;
+        setCriteria(target.value);
         setShowSearchResults(false)
     }
 
@@ -59,7 +60,7 @@ const Search = () => {
                 onBlur={onSearchBlur}
             />
 
-            <button onClick={(e) => search()} className='rounded-r-full border-l-[1px] border-black  bg-cuaternary text-black px-2 h-10 mr-4 flex items-center'>
+            <button onClick={(e) => search()} className='rounded-r-full border-l-[1px] border-black  bg-golden text-black px-2 h-10 mr-4 flex items-center'>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5} stroke="currentColor"

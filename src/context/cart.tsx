@@ -3,9 +3,14 @@ import { createContext, useState } from "react";
 import type { CardProduct, Cart } from '@/app/types'
 import type { ReactNode } from 'react';
 
-export const CartContext = createContext(null);
+export type CartContextType = {
+    cart: Cart;
+    removeFromCart: (product: CardProduct) => void;
+};
 
-export const CartProvider = ({ children }) => {
+export const CartContext = createContext<CartContextType | null>(null);
+
+export const CartProvider: React.FC<React.ReactNode> = ({ children }) => {
     const [cart, setCart] = useState<Cart>([]);
 
     const addToCart = (product: CardProduct) => {

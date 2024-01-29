@@ -15,7 +15,7 @@ const config: Config = {
         'primary': '#231F20',
         'secondary': '#BB4430',
         'ternary': '#7EBDC2',
-        'cuaternary': '#F3DFA2',
+        'golden': '#F3DFA2',
         'quinary': '#EFE6DD',
         'light': '#EFE6DD',
         'skeleton': '#ccc',
