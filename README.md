@@ -1,2 +1,2 @@
 # cardmarket
-Card market sytem 
+Card market system build in Next.js.
